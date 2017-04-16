@@ -14,6 +14,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     private MySingleton mMySingleton;
@@ -28,13 +30,14 @@ public class MainActivity extends AppCompatActivity {
     /** Called when the user clicks the Send button */
     public void CrimeMapClicked(View view) {
         // Do something in response to button
+        mMySingleton.setmCrime("");
         Intent intent = new Intent(this, MapsActivity.class);
         startActivity(intent);
     }
     /** Called when the user clicks the Send button */
     public void CrimeLogClicked(View view) {
         // Do something in response to button
-        Intent intent = new Intent(this, CrimeLogActivity.class);
+        Intent intent = new Intent(this, CrimeAlertListActivity.class);
         startActivity(intent);
     }
     /** Called when the user clicks the Send button */

@@ -1,6 +1,7 @@
 package edu.uc.bearcatsafealerts;
 
 import android.icu.text.StringPrepParseException;
+import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +13,9 @@ import java.util.List;
 class MySingleton {
     private static final MySingleton ourInstance = new MySingleton();
     private static String mCrimePage;
-    private static List<String[]> mCrimeList = new ArrayList<String[]>();
+    public static List<String[]> mCrimeList = new ArrayList<String[]>();
+    private static int mCount=0;
+    private static String mCrime;
 
     static MySingleton getInstance() {
         return ourInstance;
@@ -44,7 +47,6 @@ class MySingleton {
         int ptr = 0;
         int nxtptr = 0;
         String[] headers = new String[8];
-        String[] rowData = new String[8];
         String checkString;
         int column = 0;
         int numColumns = 0;
@@ -70,6 +72,7 @@ class MySingleton {
         // Now, repeat process until we've read all rows into the List
         while((!tableData.substring(ptr+6,ptr+14).equals("</table>"))&&(ptr>=0))
         {
+            String[] rowData = new String[8];
             column = 0;
             ptr = tableData.indexOf(">",ptr+1);
             while(ptr >= 0)
@@ -90,6 +93,19 @@ class MySingleton {
             numRows++;
             mCrimeList.add(rowData);
         }
+        mCount = numRows;
         return numRows;
+    }
+
+    public static int getmCount() {
+        return mCount;
+    }
+
+    public static String getmCrime() {
+        return mCrime;
+    }
+
+    public static void setmCrime(String mCrime) {
+        MySingleton.mCrime = mCrime;
     }
 }

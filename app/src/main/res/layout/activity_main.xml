@@ -13,65 +13,6 @@
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="9dp">
 
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="182dp"
-            android:layout_height="51dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="56dp"
-            android:layout_weight="1"
-            android:background="#ff0000"
-            android:onClick="CrimeMapClicked"
-            android:text="Crime Map"
-            tools:layout_editor_absoluteX="112dp"
-            tools:layout_editor_absoluteY="52dp" />
-
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="#ff0000"
-            android:onClick="CrimeLogClicked"
-            android:text="Crime Log"
-            tools:layout_editor_absoluteX="147dp"
-            tools:layout_editor_absoluteY="181dp"
-            android:layout_below="@+id/button2"
-            android:layout_marginTop="59dp"
-            android:layout_alignRight="@+id/button4"
-            android:layout_alignEnd="@+id/button4"
-            android:layout_alignLeft="@+id/button4"
-            android:layout_alignStart="@+id/button4" />
-
-        <Button
-            android:id="@+id/button4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="#ff0000"
-            android:text="Contact Campus Safety"
-            tools:layout_editor_absoluteX="147dp"
-            tools:layout_editor_absoluteY="309dp"
-            android:layout_below="@+id/button3"
-            android:layout_alignLeft="@+id/button2"
-            android:layout_alignStart="@+id/button2"
-            android:layout_marginTop="54dp" />
-
-        <Button
-            android:id="@+id/button5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#FF0000"
-            android:onClick="RefreshClicked"
-            android:text="Refresh Alert List"
-            android:layout_above="@+id/textView2"
-            android:layout_marginBottom="46dp"
-            android:layout_alignLeft="@+id/button4"
-            android:layout_alignStart="@+id/button4"
-            android:layout_alignRight="@+id/button2"
-            android:layout_alignEnd="@+id/button2" />
-
         <TextView
             android:id="@+id/textView2"
             android:layout_width="match_parent"
@@ -86,6 +27,52 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Notification"
             android:textColor="#FFFFFF"
             android:textSize="24sp" />
+
+        <ImageButton
+            android:id="@+id/imageButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#000000"
+            android:onClick="CrimeMapClicked"
+            app:srcCompat="@drawable/mapblack"
+            android:layout_alignParentTop="true"
+            android:layout_alignLeft="@+id/imageButton3"
+            android:layout_alignStart="@+id/imageButton3"
+            android:layout_marginTop="46dp" />
+
+        <ImageButton
+            android:id="@+id/imageButton3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#000000"
+            app:srcCompat="@drawable/publicsafetybtn"
+            android:layout_marginTop="30dp"
+            android:layout_below="@+id/imageButton2"
+            android:layout_alignLeft="@+id/imageButton4"
+            android:layout_alignStart="@+id/imageButton4" />
+
+        <ImageButton
+            android:id="@+id/imageButton4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#000000"
+            android:onClick="CrimeLogClicked"
+            app:srcCompat="@drawable/crimebtn"
+            android:layout_marginTop="23dp"
+            android:layout_below="@+id/imageButton3"
+            android:layout_alignLeft="@+id/imageButton5"
+            android:layout_alignStart="@+id/imageButton5" />
+
+        <ImageButton
+            android:id="@+id/imageButton5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imageButton4"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="26dp"
+            android:background="#000000"
+            android:onClick="RefreshClicked"
+            app:srcCompat="@drawable/refreshbtn" />
 
     </RelativeLayout>
 
