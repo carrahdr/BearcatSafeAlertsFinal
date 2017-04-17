@@ -2,6 +2,7 @@ package edu.uc.bearcatsafealerts;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -20,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
     private MySingleton mMySingleton;
 
+    // On creation of this activity, automatically go refresh the crime alert list from the UC webpage
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,40 +29,56 @@ public class MainActivity extends AppCompatActivity {
         refreshCrimeList();
         mMySingleton = MySingleton.getInstance();
     }
-    /** Called when the user clicks the Send button */
+
+    /** Called when the user clicks the Crime Map button */
     public void CrimeMapClicked(View view) {
-        // Do something in response to button
+        // Clear the "current crime selected" value so that the map will center on our current location
         mMySingleton.setmCrime("");
         Intent intent = new Intent(this, MapsActivity.class);
         startActivity(intent);
     }
-    /** Called when the user clicks the Send button */
+
+    /** Called when the user clicks the Crime Log button */
     public void CrimeLogClicked(View view) {
-        // Do something in response to button
+        // Launch the crime log activity
         Intent intent = new Intent(this, CrimeAlertListActivity.class);
         startActivity(intent);
     }
-    /** Called when the user clicks the Send button */
+
+    /** Called when the user clicks the Refresh button */
     public void RefreshClicked(View view) {
-        // Do something in response to button
+        // Refresh the crime alert list
         refreshCrimeList();
     }
 
+    /** Called when the user clicks the Contact UC button */
+    public void ContactClicked(View view) {
+        // Launch a browser with the UC Public Safety webpage
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.uc.edu/publicsafety.html"));
+        startActivity(browserIntent);
+    }
+
+    // Refresh the list of crime alerts by querying the UC police crime log webpage
     private void refreshCrimeList()
     {
+        // This method uses the "Volley" library to send/receive an http request
         final TextView mTextView = (TextView) findViewById(R.id.textView2);
         mTextView.setText("Updating Alerts");
+
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);
         String url ="http://www.uc.edu/webapps/publicsafety/policelog2.aspx";
 
-        // Request a string response from the provided URL.
+        // Request a string response from the provided URL.  This is the html text of the UC crime log webpage
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        // Display the first 500 characters of the response string.
+                        // If the response does not contain the magic words "Results for", it doesn't have a valid crime log
+                        // In that case, use the stored list of crime alerts for demo purposes.
+                        if(response.indexOf("Results For")<0)response=getResources().getString(R.string.stored_alerts);
                         mMySingleton.setmCrimePage(response);
+                        // This is the key method call to parse the webpage into a list of crime alerts
                         int numAlerts = mMySingleton.parseCrimePage();
                         mTextView.setText("Number of Alerts: " + numAlerts);
                     }

@@ -44,12 +44,13 @@
             android:id="@+id/imageButton3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#000000"
-            app:srcCompat="@drawable/publicsafetybtn"
-            android:layout_marginTop="30dp"
-            android:layout_below="@+id/imageButton2"
             android:layout_alignLeft="@+id/imageButton4"
-            android:layout_alignStart="@+id/imageButton4" />
+            android:layout_alignStart="@+id/imageButton4"
+            android:layout_below="@+id/imageButton2"
+            android:layout_marginTop="30dp"
+            android:background="#000000"
+            android:onClick="ContactClicked"
+            app:srcCompat="@drawable/publicsafetybtn" />
 
         <ImageButton
             android:id="@+id/imageButton4"
